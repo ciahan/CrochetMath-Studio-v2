@@ -31,9 +31,12 @@
 .patternGrid {
   display: grid;
   gap: 1px;
-  background-color: black;
+  background-color: white;
   padding: 1px;
 }
 
 .patternCell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

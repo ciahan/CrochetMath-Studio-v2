@@ -2,8 +2,9 @@ export default function PatternCell({
     row,
     col,
     color,
-    borderColor,
-    onClick
+    isDc, // if the pattern says this stitch should be a double crochet
+    canDc, // can do a double crochet down to the previous row
+    onClick,
 }) {
     return (
         <>
@@ -11,8 +12,25 @@ export default function PatternCell({
                 className="patternCell"
                 style={{
                     backgroundColor: color,
+                    cursor: canDc ? "pointer" : "default",
                 }}
-            />
+                onClick={() => {
+                    if (canDc) {
+                        onClick(row, col);
+                        console.log(typeof onClick);
+                    }
+                }}
+            >
+                {isDc &&
+                    <span
+                        style={{
+                            color: "var(--rowNums)"
+                        }}
+                    >
+                        X 
+                    </span>
+                }
+            </div>
         </>
     )
 }
