@@ -18,6 +18,9 @@ export default function Header() {
                 <Link>
                     Studio
                 </Link>
+                <Link to="/MosaicCrochetPatternMaker">
+                    Mosaic Crochet Pattern-Maker
+                </Link>
                 <Link to="/about">
                     About
                 </Link>

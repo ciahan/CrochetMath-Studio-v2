@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import Header from "./components/Header.jsx";
 
 import Home from "./pages/Home.jsx";
+import MosaicCrochetPatternMaker from "./pages/MosaicCrochetPatternMaker.jsx";
 
 import './App.css'
 
@@ -12,6 +13,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/MosaicCrochetPatternMaker" element={<MosaicCrochetPatternMaker />} />
       </Routes>
     </>
   )

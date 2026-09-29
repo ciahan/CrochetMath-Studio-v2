@@ -4,7 +4,6 @@ import { pattern } from "../data/pattern.js";
 export default function Home() {
     return (
         <>
-            <RenderedPattern pattern={pattern}/>
         </>
     )
 }

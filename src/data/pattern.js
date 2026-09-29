@@ -5,9 +5,10 @@ export const pattern = {
     rows: 10,
     cols: 10,
 
+    borderColor: "#000000",
     colors: {
-        0: "#F4EFE6",
-        1: "#24364B",
+        0: "var(--light-blue)",
+        1: "var(--light-gray)",
     },
 
     grid: [
