@@ -1,13 +1,22 @@
 import { useState } from "react";
 
 import RenderedPattern from "../components/RenderedPattern"
-import { pattern } from "../data/pattern"
+import CreatePattern from "../components/CreatePattern"
 
-import { applyDc } from "../utils/patternUtils"
+import { 
+    createPattern,
+    downloadPattern,
+    importPattern,
+    applyDc 
+} from "../utils/patternUtils"
 
 export default function MosaicCrochetPatternMaker() {
-    const [currentPattern, setCurrentPattern] = useState(pattern);
+    const [currentPattern, setCurrentPattern] = useState(null);
     const [mode, setMode] = useState("view");
+
+    function handleCreatePattern(rows, cols) {
+        setCurrentPattern(createPattern(rows, cols))
+    };
 
     function handleStitchClick(row, col) {
         console.log("clicked:", row, col);
@@ -23,12 +32,43 @@ export default function MosaicCrochetPatternMaker() {
         })
     }
 
+    function handleSavePattern() {
+        downloadPattern(currentPattern);
+    }
+
+    async function handleImportPattern(event) {
+        const file = event.target.files[0];
+        
+        if (!file) {
+            return;
+        }
+
+        try {
+            const importedPattern = await importPattern(file);
+            setCurrentPattern(importedPattern);
+        } catch (error) {
+            console.error("Could not import pattern:", error);
+        }
+    }
+
     return (
         <>
-            <RenderedPattern 
-                pattern={currentPattern}
-                onStitchClick={handleStitchClick}
-            />
+            {currentPattern === null ? (
+                <CreatePattern 
+                    onCreate={handleCreatePattern}
+                    onImport={handleImportPattern}
+                />
+            ) : (
+                <>
+                    <RenderedPattern 
+                        pattern={currentPattern}
+                        onStitchClick={handleStitchClick}
+                    />
+                    <button onClick={handleSavePattern}>
+                        Save Pattern
+                    </button>
+                </>
+            )}
         </>
     )
 }
