@@ -8,6 +8,7 @@ export default function CreatePattern ({
     const [cols, setCols] = useState(20);
     
     return (
+        <>
             <h1>
                 Import an Overlay Mosaic Crochet Pattern
             </h1>
